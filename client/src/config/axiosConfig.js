@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-export const Auth = axios.create({
+ const axiosConfig = axios.create({
     baseURL:"http://localhost:5000",
     withCredentials: true
-})
+});
+
+export default axiosConfig;

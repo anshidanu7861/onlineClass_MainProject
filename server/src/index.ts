@@ -1,8 +1,8 @@
 import express, { Application } from 'express'
 import Server from './frameWorks/webServer/server'
 import database from './frameWorks/database/mongodb/connection/connection'
-import userRoute from './frameWorks/webServer/routes'
 import expressConfig from './frameWorks/webServer/express'
+import router from './frameWorks/webServer/routes'
 
 const app: Application = express();
 
@@ -16,6 +16,6 @@ Server(app)
 database()
 
 // Routes
-app.use('/',userRoute,)
+router(app)
 
 export default app;

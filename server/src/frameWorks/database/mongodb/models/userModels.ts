@@ -3,9 +3,13 @@ import validator from "validator";
 
 
 const userSchema = new mongoose.Schema({
-    name: {
+    fname: {
         type: String,
         required: true
+    },
+    lname: {
+        type:String,
+        require: true
     },
     email: {
         type: String,
@@ -14,7 +18,7 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         validator: [validator.isEmail, "Invalid Email"]
     },
-    phone: {
+    phone: { 
         type: String,
         unique: true,
         validator: [
@@ -32,6 +36,6 @@ const userSchema = new mongoose.Schema({
 })
 
 
-
-export const userRegistrationSchema = mongoose.model('users', userSchema)
+const userModel =  mongoose.model('users', userSchema)
+export default userModel;
 

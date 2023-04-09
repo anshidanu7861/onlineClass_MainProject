@@ -1,8 +1,15 @@
+import { authType } from "../../frameWorks/database/mongodb/repositories/userReposioryMongo";
 import { userInterface } from "../../types/authInterface";
-import { usertypeofRepository } from "../respositories/userRepository";
+import { authServiceInterfaceType } from "../services/authServiesInterface";
 
 
-export  function addUser(userData: userInterface, repository:ReturnType<usertypeofRepository>) {
-    const status = repository.doSignup(userData)
-    return status;
-}
+export const addUser = async(
+    userData: userInterface,
+    userDbRepository: ReturnType<authType>,
+    authServices: ReturnType<authServiceInterfaceType>
+    )=>{
+        userData.email = userData.email?.toLowerCase()
+        userData.password  = await authServices.encriptPassword(userData.password)
+        const user = await userDbRepository.doSignup(userData)
+        
+    }
