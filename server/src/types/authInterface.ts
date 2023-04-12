@@ -4,4 +4,7 @@ export interface userInterface {
     email?: string,
     phone: string,
     password: string,
+    confirmPassword: string,
+    field: string,
+    isActive: boolean
 }

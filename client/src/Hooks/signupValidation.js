@@ -2,12 +2,15 @@ import { useState } from 'react'
 
 const userSignupValidation = ()=> {
 
-    const [error, setError] = useState({
+    const [errors, setError] = useState({
         fname:"",
         lname:'',
         email:"",
         phone:"",
-        password:""
+        password:"",
+        confirmPassword: "",
+        field:"",
+        isActive: false
     }) 
 
     const [signForm, setSignForm] = useState({
@@ -15,7 +18,10 @@ const userSignupValidation = ()=> {
         lname:'',
         email:'',
         phone:'',
-        password:''
+        password:'',
+        confirmPassword: "",
+        field:'',
+        isActive: false
     })
 
     const containsNumber = (string)=>{
@@ -53,10 +59,17 @@ const userSignupValidation = ()=> {
         }else if(name === 'email') {
             if(!isValidEmail(value)) error = 'Invalid email address'
         }else if(name === 'phone') {
-            if(!isValidMobile(value)) error = 'Invalid mobile number'
+            if(!isValidMobile(value))error = 'Invalid mobile number'
+        
+            
         }else if(name === 'password') {
             ClipboardEvent
             if(!passwordLength(value)) error = "Should contain atleast 6 charecter"
+            
+        }else if(name === 'lname') {
+            if(specialCharectors(value)) error = "Should only contain alphabets"
+        }else if(name === 'confirmPassword') {
+            if(signForm.password !== value) error = "Password does not match"
         }
 
         setError((prevErrors)=>({
@@ -72,13 +85,13 @@ const userSignupValidation = ()=> {
    
     }
     const isValidForm = async(e)=>{
-        e.priventDefault()
+        e.preventDefault()
         let status = true
-        if(signForm['email'].length == 0 || error['email']!=undefined) status = false
-        return status;
+        if(signForm['email'].length == 0 || errors['email']!=undefined) status = false
+        if(signForm.password != signForm.confirmPassword) status = false
+        return status; 
     }
-    return {error, signForm, handleInputs, isValidForm }
-
+    return {errors, signForm, handleInputs, isValidForm }
 }
 
 export default userSignupValidation;

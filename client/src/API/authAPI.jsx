@@ -11,7 +11,16 @@ const authAPI = ()=>{
         }
     }
 
-    return { dosignup }
+    const verifyEmail = async (dataURL) => {
+        try{
+            const response = await axiosConfig.post('/login', dataURL)
+            return response.data
+        }catch(err) {
+            throw{msg: err.response.data.message}
+        }
+    }
+
+    return { dosignup, verifyEmail }
 }
 
 export default authAPI;

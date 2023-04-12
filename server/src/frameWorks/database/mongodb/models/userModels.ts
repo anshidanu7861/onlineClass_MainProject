@@ -32,6 +32,16 @@ const userSchema = new mongoose.Schema({
     },
     password: { 
         type: String,
+    },
+    confirmPassword:{
+        type:String
+    },
+    field: {
+        type: String,
+        requred: true
+    },
+    isActive: {
+        type: Boolean,
     }
 })
 

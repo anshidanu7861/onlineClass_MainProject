@@ -10,6 +10,7 @@ export const addUser = async(
     )=>{
         userData.email = userData.email?.toLowerCase()
         userData.password  = await authServices.encriptPassword(userData.password)
+        userData.confirmPassword = await authServices.encriptPassword(userData.confirmPassword)
         const user = await userDbRepository.doSignup(userData)
         
     }
