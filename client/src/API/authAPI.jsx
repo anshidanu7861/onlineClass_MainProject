@@ -20,6 +20,17 @@ const authAPI = ()=>{
         }
     }
 
+    // const userLogin = async (loginData) => {
+    //     console.log('hia');
+    //     try{
+    //         const response = await axiosConfig.post('/login', loginData)
+    //         console.log(loginData, "anshid andi andi andi andinaidnaidjf");
+    //         return response.data
+    //     }catch(err) {
+    //         throw{msg: err.response.data.message}
+    //     }
+    // }
+
     return { dosignup, verifyEmail }
 }
 

@@ -17,6 +17,8 @@ const controller = userAuthController(
 )
 
 // USER REGISTER
-router.post('/signup', controller.register)
+router.post('/signup', controller.register )
+// VERIFY EMIAL
+router.post('/login', controller.emailVerification )
 
 export default router;

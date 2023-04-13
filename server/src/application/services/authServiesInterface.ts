@@ -9,6 +9,8 @@ export const authServiceInterface = (service: ReturnType<AuthService>)=> {
     }
 
     const comparePassword = (password: string, encriptPassword: string)=>{
+        console.log(password, "nannna nannna");
+        
         return service.ComparePassword(password, encriptPassword)
     }
 
@@ -19,6 +21,7 @@ export const authServiceInterface = (service: ReturnType<AuthService>)=> {
     const compareConfirmPassword = (confirmPassword: string, encriptConfirmPassword:string)=> {
         return service.ComparePassword(confirmPassword, encriptConfirmPassword)
     }
+
 
 
     return {

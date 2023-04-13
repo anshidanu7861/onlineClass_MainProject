@@ -14,3 +14,29 @@ export const addUser = async(
         const user = await userDbRepository.doSignup(userData)
         
     }
+
+
+export const isValidEmail = async(
+    email: string , 
+    password: string,
+    userDBRepository: ReturnType<authType>,
+    authServices: ReturnType<authServiceInterfaceType>
+) =>{
+    email = email.toLocaleUpperCase()
+    const user : userInterface | null = await userDBRepository.findEmail(email)
+    
+    if(user) {
+        const response = await authServices.comparePassword ( password, user.password)
+        if(!response) {
+            throw (error: Error)=>{
+                console.log(error);
+            }
+        }
+    }else{
+        throw (err: Error)=> {
+            console.log(err);
+            
+        }
+    }
+    return { user }
+}

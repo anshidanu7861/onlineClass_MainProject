@@ -1,10 +1,7 @@
 import Swal from 'sweetalert2'
 import {Link, useNavigate } from 'react-router-dom'
-import authAPI from '../../API/authAPI'
-
 
 const SweetAlert = () =>{
-    const { verifyEmail } = authAPI()
     const navigate = useNavigate()
 
     const successRgistration = () => {
@@ -19,8 +16,8 @@ const SweetAlert = () =>{
             allowOutsideClick: true,
           }).then((result) => {
             if (result) {
-              // Redirect to login page
-              navigate("/login");
+              // Redirect to landing page
+              navigate("/");
             }
           });
     }

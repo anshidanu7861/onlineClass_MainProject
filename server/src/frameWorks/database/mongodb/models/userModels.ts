@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-
+userSchema.index({ email: 1})
 const userModel =  mongoose.model('users', userSchema)
 export default userModel;
 

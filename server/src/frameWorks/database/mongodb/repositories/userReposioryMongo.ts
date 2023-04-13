@@ -6,7 +6,12 @@ export  function userDBRepository() {
     const user = await userModel.create( userData )
     return user;
   }
-  return  {doSignup};
+
+  const findEmail = async (email: string) =>{
+    const user : userInterface | null = await userModel.findOne({'email' : email})
+    return user;
+  }
+  return  { doSignup,findEmail };
 }
 
 export type authType = typeof userDBRepository;

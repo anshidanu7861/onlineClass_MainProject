@@ -6,6 +6,7 @@ import { addUser } from "../../application/use_cases/auth";
 import { AuthService } from "../../frameWorks/services/authServies";
 import { authServiceInterfaceType } from "../../application/services/authServiesInterface";
 import asyncHandler from 'express-async-handler'
+import { isValidEmail } from "../../application/use_cases/auth";
 
 const userAuthController = ( 
   userDBRepository: authType,
@@ -21,8 +22,18 @@ const userAuthController = (
     const response = await addUser(userData, userDBrepository, authServices)
     res.json(response)
   })
+
+   const emailVerification = asyncHandler(async (req: Request, res:Response)=>{
+    console.log(req.body,"igatto varunne");
+    
+    let { email, password } : { email: string, password: string } = req.body
+    const response = await isValidEmail(email, password, userDBrepository, authServices)
+    res.json(response)
+   })
+
   return {
-    register
+    register,
+    emailVerification
   }
 }
 

@@ -25,6 +25,7 @@ const handleSubmit = async (e)=>{
     try{
         // Rergister api call
         const signupResponse = await dosignup(signForm)
+        successRgistration()
         navigate('/')
     } catch (error) {
         console.log(error.msg);
@@ -143,7 +144,6 @@ const handleSubmit = async (e)=>{
                     
                     <p className='text-blue-900 text-right text-sm'>Already have an account?<span onClick={()=>{navigate('/login')}} className='text-green-500 underline ml-1 hover:text-red-500 hover:cursor-pointer text-sm'>Login</span></p>
                     <div className='flex justify-center items-center mt-6'>
-                        <input type="" />
                         <button
                             className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark bg-gradient-to-r from-gray-500 to-black hover:from-black hover:to-gray-500 ...`}
                             type='submit'

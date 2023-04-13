@@ -27,7 +27,8 @@ function Login() {
         }
 
         try{
-            const loginResponse = await verifyEmail(loginForm)
+            const emailVerifyResponse = await verifyEmail(loginForm)
+            navigate('/')
         }catch(error) {
             invalidLogin()
             console.log(error.msg);

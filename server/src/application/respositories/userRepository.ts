@@ -6,9 +6,15 @@ export const userRepository =  (repository: ReturnType<authType>)=> {
    const doSignup =  (userData:userInterface)=>{   
    return repository.doSignup(userData)
    }
+
+   const findEmail = ( email:string)=>{return repository.findEmail(email)}
+   
   return {
-    doSignup
+    doSignup,
+    findEmail,
   }
 }
 
-export type usertypeofRepository = typeof userRepository
+export default userRepository;
+
+export type usertypeofRepository = typeof userRepository;
