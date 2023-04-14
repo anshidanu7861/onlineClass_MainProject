@@ -14,24 +14,25 @@ const authAPI = ()=>{
     const verifyEmail = async (dataURL) => {
         try{
             const response = await axiosConfig.post('/login', dataURL)
+            console.log(response.data, "jjjjjjjjjjjjjjjjjjjjj");
             return response.data
         }catch(err) {
             throw{msg: err.response.data.message}
         }
     }
 
-    // const userLogin = async (loginData) => {
-    //     console.log('hia');
-    //     try{
-    //         const response = await axiosConfig.post('/login', loginData)
-    //         console.log(loginData, "anshid andi andi andi andinaidnaidjf");
-    //         return response.data
-    //     }catch(err) {
-    //         throw{msg: err.response.data.message}
-    //     }
-    // }
+    const CreateAccessToken = async () => {
+        try{
+            const response = await axiosConfig.get('/token')
+            return response.data;
+        }catch(err) {
+            throw{msg: err.response.data.message}
+        }
+    }
 
-    return { dosignup, verifyEmail }
+    
+
+    return { dosignup, verifyEmail, CreateAccessToken }
 }
 
 export default authAPI;

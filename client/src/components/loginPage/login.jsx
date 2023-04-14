@@ -1,24 +1,24 @@
-import React from "react";
-import { useAsyncError, useNavigate } from 'react-router-dom'
+import React  from "react";
+import {  useNavigate } from 'react-router-dom'
 // GOOGLE AUTHENTICATION
-import { useGoogleLogin } from '@react-oauth/google'
+// import { useGoogleLogin } from '@react-oauth/google'
 // TOASTYFY
 import { ToastContainer } from 'react-toastify'
 import loginValidation from "../../Hooks/loginValidation";
+// Auth API
 import authAPI from "../../API/authAPI";
 import { invalidRegistration, invalidLogin } from "../../config/toastifyConfig";
+//Redux
+import { setDetails } from "../../Redux/userSlice/userSlice";
+import { useDispatch } from 'react-redux'
 
 
 function Login() {
-
-    const login = useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
-    });
     const navigate = useNavigate()
     const { handleInput, isValidForm, loginForm, errors } = loginValidation()
     const { verifyEmail } = authAPI()
-    
+    const dispatch = useDispatch()
+
     const handleSubmit = async (e)=>{
         let formStatus = await isValidForm(e)
         if(!formStatus) {
@@ -28,6 +28,9 @@ function Login() {
 
         try{
             const emailVerifyResponse = await verifyEmail(loginForm)
+            const { userId, fname, email, accessToken } = emailVerifyResponse
+            console.log(userId, fname, email, accessToken );
+            dispatch(setDetails({ userId, fname, email, accessToken }))
             navigate('/')
         }catch(error) {
             invalidLogin()
@@ -38,14 +41,12 @@ function Login() {
     return(
         <>
         <div className=' w-full px-5  flex h-screen items-center lg:px-60'>
-            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-4/5 items-center  md:flex justify-center   py-10 px-9'>
+            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-6/1 items-center  md:flex justify-center   py-10 px-9'>
                 <div className=''>
-                <img className='' src="\public\images\lo1.png" alt="phoenix icon" />
+                <img className='h-12' src="\public\images\lo1.png" alt="phoenix icon " />
                 </div>
-
                 <div className=' items-center'>
                 <img className='h-1/2 w-2/2'  src="\public\images\BSC-Computer-Science-vs-BCA.jpg" alt="" />
-
                 </div>
      
             </div>
@@ -100,11 +101,9 @@ function Login() {
                             Submit
                         </button>
                     </div>
-                    
                 </form>
             </div>
         </div>
-
     <ToastContainer />
     </>
     )

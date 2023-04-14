@@ -5,6 +5,7 @@ const UserSignup = lazy(()=> import("../pages/user/userSignup"))
 import UserLogin from '../pages/user/userLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import LandingPage from '../components/landingPage/landingPage';
+import StudentNavbar from '../components/navbar/StudentNavbar';
 
 // USER ROUTERS
 function UserRouter() {
@@ -28,7 +29,7 @@ function UserRouter() {
 
             <Route exact path='/' element={
             <Suspense fallback={ <ColorRingLoader /> }>
-             <LandingPage />
+             <LandingPage element={ <StudentNavbar/>} />
             </Suspense>}>
             </Route>
 

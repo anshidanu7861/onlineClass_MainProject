@@ -5,10 +5,7 @@ import { userRepository } from '../../../../application/respositories/userReposi
 import {  authService } from '../../../services/authServies';
 import { authServiceInterface } from '../../../../application/services/authServiesInterface';
 
-
-
 const router = express.Router();
-
 const controller = userAuthController(
     userDBRepository,
     userRepository,
@@ -20,5 +17,9 @@ const controller = userAuthController(
 router.post('/signup', controller.register )
 // VERIFY EMIAL
 router.post('/login', controller.emailVerification )
+
+// router.post('/googleVerify', controller.googleVerification)
+
+router.get('/token', controller.jwtAuth)
 
 export default router;

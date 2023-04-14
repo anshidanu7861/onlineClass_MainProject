@@ -3,12 +3,12 @@ import { useState } from 'react'
 const loginValidation = () =>{
     const [ errors, setErrors ] = useState({
         email: "",
-        password: ""
+        password: "",
     })
 
     const [loginForm, setLoginForm ] = useState({
         email: '',
-        password: ''
+        password: '',
     })
 
     const isValidEmail = (string)=>{
