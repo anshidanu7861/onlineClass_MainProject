@@ -11,7 +11,13 @@ export  function userDBRepository() {
     const user : userInterface | null = await userModel.findOne({'email' : email})
     return user;
   }
-  return  { doSignup,findEmail };
+
+  const googleLogin = async (email: string) =>{
+    const user : userInterface | null = await userModel.findOne({'email' : email})
+    return user;
+  }
+
+  return  { doSignup,findEmail, googleLogin };
 }
 
 export type authType = typeof userDBRepository;

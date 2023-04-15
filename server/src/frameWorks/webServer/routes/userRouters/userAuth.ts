@@ -17,9 +17,9 @@ const controller = userAuthController(
 router.post('/signup', controller.register )
 // VERIFY EMIAL
 router.post('/login', controller.emailVerification )
-
-// router.post('/googleVerify', controller.googleVerification)
-
+// REFRESH TOKEN
 router.get('/token', controller.jwtAuth)
+// GOOGLE AUTH
+router.post('/googleLogin', controller.googleVerification)
 
 export default router;

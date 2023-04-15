@@ -1,23 +1,23 @@
-import React  from "react";
+import React from "react";
 import {  useNavigate } from 'react-router-dom'
-// GOOGLE AUTHENTICATION
-// import { useGoogleLogin } from '@react-oauth/google'
 // TOASTYFY
 import { ToastContainer } from 'react-toastify'
 import loginValidation from "../../Hooks/loginValidation";
 // Auth API
 import authAPI from "../../API/authAPI";
-import { invalidRegistration, invalidLogin } from "../../config/toastifyConfig";
+import { invalidRegistration, invalidLogin, googleLoginError } from "../../config/toastifyConfig";
 //Redux
 import { setDetails } from "../../Redux/userSlice/userSlice";
 import { useDispatch } from 'react-redux'
 
+// GoogleLogin
+import GoogleLoginButton from "../googleAuth/GoogleAuth";
 
 function Login() {
-    const navigate = useNavigate()
     const { handleInput, isValidForm, loginForm, errors } = loginValidation()
-    const { verifyEmail } = authAPI()
+    const { verifyEmail, googleLoginApi } = authAPI()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e)=>{
         let formStatus = await isValidForm(e)
@@ -29,12 +29,24 @@ function Login() {
         try{
             const emailVerifyResponse = await verifyEmail(loginForm)
             const { userId, fname, email, accessToken } = emailVerifyResponse
-            console.log(userId, fname, email, accessToken );
             dispatch(setDetails({ userId, fname, email, accessToken }))
             navigate('/')
         }catch(error) {
             invalidLogin()
             console.log(error.msg);
+        };
+
+    }
+
+    const googleLogindata = async(userInfo)=>{
+        try{
+            const googleResponse = await googleLoginApi({email:userInfo.email})
+            const {userId, fname, email, accessToken } = googleResponse
+            dispatch(setDetails({userId, fname, email, accessToken }))
+            navigate('/')
+        }catch(err){
+            googleLoginError()
+            console.log(err);
         }
     }
 
@@ -56,10 +68,7 @@ function Login() {
                     Sign Up
                 </h1>
 
-                <button onClick={()=>login()} type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
-                 <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
-                 Sign in with Google
-                </button>
+                <GoogleLoginButton text = "Sign in With Google" handleUserInfo={ googleLogindata }/>
 
                 <form onSubmit={ handleSubmit }>
                     <div>

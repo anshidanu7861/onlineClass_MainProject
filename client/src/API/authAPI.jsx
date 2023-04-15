@@ -14,7 +14,6 @@ const authAPI = ()=>{
     const verifyEmail = async (dataURL) => {
         try{
             const response = await axiosConfig.post('/login', dataURL)
-            console.log(response.data, "jjjjjjjjjjjjjjjjjjjjj");
             return response.data
         }catch(err) {
             throw{msg: err.response.data.message}
@@ -30,9 +29,18 @@ const authAPI = ()=>{
         }
     }
 
-    
+    const googleLoginApi = async (email)=>{
+        try{
+            console.log(email, "only mail is coming");
+            console.log('helloooo');
+            const response = await axiosConfig.post('/googleLogin', email)
+            return response.data
+        }catch(err) {
+            console.log(err);
+        }
+    }
 
-    return { dosignup, verifyEmail, CreateAccessToken }
+    return { dosignup, verifyEmail, CreateAccessToken, googleLoginApi }
 }
 
 export default authAPI;

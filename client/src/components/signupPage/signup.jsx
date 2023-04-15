@@ -14,7 +14,7 @@ function Signup() {
 const navigate = useNavigate()
 const { handleInputs, isValidForm, signForm, errors  } = userSignupValidation() 
 const { dosignup } = authAPI()
-const { successRgistration } = SweetAlert()
+const { successfulleyRgistration } = SweetAlert()
 
 const handleSubmit = async (e)=>{
     let formStatus = await isValidForm(e)
@@ -25,8 +25,9 @@ const handleSubmit = async (e)=>{
     try{
         // Rergister api call
         const signupResponse = await dosignup(signForm)
-        successRgistration()
-        navigate('/')
+        console.log('success');
+        successfulleyRgistration()
+        navigate('/login')
     } catch (error) {
         console.log(error.msg);
         invalidRegisterCred(error)

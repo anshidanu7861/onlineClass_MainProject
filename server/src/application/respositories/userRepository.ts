@@ -8,10 +8,13 @@ export const userRepository =  (repository: ReturnType<authType>)=> {
    }
 
    const findEmail = ( email:string)=>{return repository.findEmail(email)}
+
+   const googleLogin = (email: string)=> {return repository.googleLogin(email)}
    
   return {
     doSignup,
     findEmail,
+    googleLogin,
   }
 }
 

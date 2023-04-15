@@ -12,11 +12,28 @@ export const addUser = async(
         userData.email = userData.email?.toLowerCase()
         userData.password  = await authServices.encriptPassword(userData.password)
         userData.confirmPassword = await authServices.encriptPassword(userData.confirmPassword)
-
         const user = await userDbRepository.doSignup(userData)
 }
 
-
+export const googleLogin = async(
+    email:string,
+    userDBRepository: ReturnType<authType>,
+    authServices: ReturnType<authServiceInterfaceType>
+) =>{
+    console.log('hi google user');
+    
+    email = email.toLowerCase()
+    const user: userInterface | null = await userDBRepository.googleLogin(email)
+    console.log(user, 'google user finding');
+    
+    if(!user) {
+        throw new AppError ("this user does't exist", HttpStatus.UNAUTHORIZED)
+    }else{
+        const token = await authServices.generateAccessToken(user._id as string)
+        const refreshToken = await authServices.generateRefreshToken(user._id as string)
+        return {user, token, refreshToken }
+    }
+}
 
 
 export const isValidEmail = async(
@@ -41,21 +58,3 @@ export const isValidEmail = async(
 }
 
 
-// export const googleLogin = async(
-//     email: string,
-//     userDBRepository: ReturnType<authType>,
-
-// ) =>{
-//     const user : userInterface | null = await userDBRepository.findEmail(email)
-//     console.log(user, "usere kitty");
-    
-//     if(!user){
-//         console.log('no user found');
-        
-//     }else{
-//         console.log('success');
-        
-//     }
-
-//     return user;
-// }
