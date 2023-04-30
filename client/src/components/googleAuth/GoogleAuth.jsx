@@ -1,12 +1,8 @@
 import React from 'react'
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
-import authAPI from '../../API/authAPI'
-import { useNavigate } from 'react-router-dom'
-
 
 function GoogleLoginButton ({text,handleUserInfo}) {
-    const navigate = useNavigate()
 
     const googleLoginHandler = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -19,7 +15,6 @@ function GoogleLoginButton ({text,handleUserInfo}) {
                 
             }catch(err) {
                 console.log(err, "google error");
-                
             }
         },
 
@@ -30,8 +25,8 @@ function GoogleLoginButton ({text,handleUserInfo}) {
         <>
             <button
                 type="button" onClick={googleLoginHandler}
-                className="flex items-center  bg-gradient-to-t from-white to-white hover:from-fuchsia-600 hover:to-purple-900 hover:text-white  justify-center w-full p-3 border border-black rounded-md focus:ring-2
-                focus:ring-offset-1 focus:ring-violet-600">
+                className="flex items-start  bg-gradient-to-t from-white to-white  justify-center  p-3 border border-black rounded-md focus:ring-2
+                focus:ring-offset-1 focus:ring-blue-400">
                 <img src='https://freesvg.org/img/1534129544.png' width={25} />
                 <p className='-mt-1 ml-2 font-sans font-semibold'>{ text }</p>
             </button>

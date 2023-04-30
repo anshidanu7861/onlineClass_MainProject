@@ -3,6 +3,7 @@ import { userInterface } from "../../types/authInterface";
 import { authServiceInterfaceType } from "../services/authServiesInterface";
 import AppError from "../../utils/appErrors";
 import { HttpStatus } from "../../types/httpStatus";
+import { mailServiceType } from '../../frameWorks/services/mailService'
 
 export const addUser = async(
     userData: userInterface,
@@ -11,8 +12,12 @@ export const addUser = async(
     )=>{
         userData.email = userData.email?.toLowerCase()
         userData.password  = await authServices.encriptPassword(userData.password)
-        userData.confirmPassword = await authServices.encriptPassword(userData.confirmPassword)
+        userData.confirmPassword = await authServices.encriptPassword(userData.confirmPassword);
         const user = await userDbRepository.doSignup(userData)
+
+        return {
+            user,
+        }
 }
 
 export const googleLogin = async(
@@ -20,18 +25,29 @@ export const googleLogin = async(
     userDBRepository: ReturnType<authType>,
     authServices: ReturnType<authServiceInterfaceType>
 ) =>{
-    console.log('hi google user');
-    
     email = email.toLowerCase()
     const user: userInterface | null = await userDBRepository.googleLogin(email)
-    console.log(user, 'google user finding');
-    
     if(!user) {
         throw new AppError ("this user does't exist", HttpStatus.UNAUTHORIZED)
     }else{
         const token = await authServices.generateAccessToken(user._id as string)
         const refreshToken = await authServices.generateRefreshToken(user._id as string)
         return {user, token, refreshToken }
+    }
+}
+
+export const otpLogin = async(
+    phone:string,
+    userDBRepository: ReturnType<authType>,
+    authServices: ReturnType<authServiceInterfaceType>
+)=>{
+    const user : userInterface | null = await userDBRepository.otpLogin(phone)
+    if(!user) {
+        throw new AppError ("this user does't exist ", HttpStatus.UNAUTHORIZED)
+    }else{
+        const token = await authServices.generateAccessToken(user._id as string)
+        const refreshToken = await authServices.generateRefreshToken(user._id as string)
+        return {user, token, refreshToken}
     }
 }
 

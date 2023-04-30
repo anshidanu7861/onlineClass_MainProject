@@ -6,7 +6,7 @@ import { addUser } from "../../application/use_cases/auth";
 import { AuthService } from "../../frameWorks/services/authServies";
 import { authServiceInterfaceType } from "../../application/services/authServiesInterface";
 import asyncHandler from 'express-async-handler'
-import { isValidEmail, googleLogin } from "../../application/use_cases/auth";
+import { isValidEmail, googleLogin, otpLogin } from "../../application/use_cases/auth";
 
 const userAuthController = ( 
   userDBRepository: authType,
@@ -49,12 +49,18 @@ const userAuthController = (
     res.json(response)
    })
 
+   const otpVerification = asyncHandler(async(req:Request, res:Response)=>{
+    let { phone } : { phone:string } = req.body
+    const response = await otpLogin(phone, userDBrepository, authServices)
+    res.json(response)
+   })
 
   return {
     register,
     emailVerification,
     jwtAuth,
     googleVerification,
+    otpVerification
   }
 }
 

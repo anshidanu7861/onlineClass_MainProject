@@ -6,6 +6,7 @@ import UserLogin from '../pages/user/userLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import LandingPage from '../components/landingPage/landingPage';
 import StudentNavbar from '../components/navbar/StudentNavbar';
+import OtpLoginPage from '../components/firebase/OtpLoginPage';
 
 // USER ROUTERS
 function UserRouter() {
@@ -31,6 +32,13 @@ function UserRouter() {
             <Suspense fallback={ <ColorRingLoader /> }>
              <LandingPage element={ <StudentNavbar/>} />
             </Suspense>}>
+            </Route>
+ 
+            <Route exact path='/otpLoginPage' element={
+              <Suspense fallback={<ColorRingLoader />}>
+                <OtpLoginPage />
+              </Suspense>
+            }>
             </Route>
 
           </Routes>

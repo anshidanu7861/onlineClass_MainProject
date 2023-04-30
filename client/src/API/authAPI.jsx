@@ -31,8 +31,6 @@ const authAPI = ()=>{
 
     const googleLoginApi = async (email)=>{
         try{
-            console.log(email, "only mail is coming");
-            console.log('helloooo');
             const response = await axiosConfig.post('/googleLogin', email)
             return response.data
         }catch(err) {
@@ -40,7 +38,17 @@ const authAPI = ()=>{
         }
     }
 
-    return { dosignup, verifyEmail, CreateAccessToken, googleLoginApi }
+    const otpLoginApi = async (phoneNumber)=>{
+        try{
+            console.log(phoneNumber, "hai phoen");
+            const response = await axiosConfig.post('/otpLogin', phoneNumber)
+            return response.data
+        }catch(err) {
+
+        }
+    }
+
+    return { dosignup, verifyEmail, CreateAccessToken, googleLoginApi, otpLoginApi }
 }
 
 export default authAPI;

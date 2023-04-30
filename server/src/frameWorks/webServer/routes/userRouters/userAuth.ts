@@ -21,5 +21,7 @@ router.post('/login', controller.emailVerification )
 router.get('/token', controller.jwtAuth)
 // GOOGLE AUTH
 router.post('/googleLogin', controller.googleVerification)
+// OTP AUTH
+router.post('/otpLogin', controller.otpVerification)
 
 export default router;

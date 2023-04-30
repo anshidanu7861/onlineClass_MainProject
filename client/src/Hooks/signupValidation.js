@@ -41,7 +41,7 @@ const userSignupValidation = ()=> {
     }
 
     const isValidMobile = (string) =>{
-        return /^[6-9]\d{9}$/.test(string)
+        return /^\+[1-9]{1}[0-9]{3,14}$/.test(string)
     }
 
     const passwordLength = (string)=> {

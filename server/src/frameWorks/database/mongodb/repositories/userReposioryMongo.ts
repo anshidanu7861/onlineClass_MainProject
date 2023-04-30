@@ -3,6 +3,7 @@ import userModel from "../models/userModels";
 
 export  function userDBRepository() {
   const doSignup = async (userData: userInterface )=>{
+    console.log('hello world');
     const user = await userModel.create( userData )
     return user;
   }
@@ -17,7 +18,12 @@ export  function userDBRepository() {
     return user;
   }
 
-  return  { doSignup,findEmail, googleLogin };
+  const otpLogin = async (phone: string) =>{
+    const user : userInterface | null = await userModel.findOne({'phone' : phone})
+    return user
+  }
+
+  return  { doSignup,findEmail, googleLogin, otpLogin };
 }
 
 export type authType = typeof userDBRepository;

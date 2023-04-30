@@ -41,7 +41,20 @@ export const invalidLogin = ()=>{
 }
 
 export const googleLoginError = ()=>{
-  toast.error("This email not registered", {
+  toast.error("This email does't exist", {
+      position: 'top-right',
+      autoClose:1000,
+      hideProgressBar:false,
+      closeOnClick:true,
+      pauseOnHover:true,
+      draggable:true,
+      progress:undefined,
+      theme:"dark"
+  }) 
+}
+
+export const otpLoginError = ()=>{
+  toast.error("this number does't exist", {
       position: 'top-right',
       autoClose:1000,
       hideProgressBar:false,

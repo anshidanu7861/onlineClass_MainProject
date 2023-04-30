@@ -8,13 +8,10 @@ const app: Application = express();
 
 // EXPRESS CONFIG
 expressConfig(app)
-
 // CREAT SERVER
 Server(app)
-
 // Database Connection
 database()
-
 // Routes
 router(app)
 

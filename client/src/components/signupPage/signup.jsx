@@ -38,7 +38,7 @@ const handleSubmit = async (e)=>{
     <>
    
         <div className=' w-full px-5  flex h-screen items-center lg:px-60'>
-            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-4/5 items-center  md:flex justify-center   py-10 px-9'>
+            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-4/5 items-center  md:flex justify-center  py-10 px-9'>
                 <div className=''>
                 <img className='' src="\public\images\lo1.png" alt="phoenix icon" />
                 </div>
@@ -51,15 +51,12 @@ const handleSubmit = async (e)=>{
             </div>
 
             <div className='w-full md:w-1/2 m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border shadow-lg hover:shadow-blue-500/50   py-10 px-9'>
-                <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center animate-pulse text-blue-300 hover:text-red-300'>
+                <h1 className='text-2xl font-medium text-primary mb-7 text-center animate-pulse text-blue-300 hover:text-red-300'>
                     Sign Up
                 </h1>
-
-
-
                 <form onSubmit={ handleSubmit }>
                     <div>
-                        <p className='text-red-500'>{errors.fname}</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{errors.fname}</p>
                         <input
                             type='text'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -72,7 +69,7 @@ const handleSubmit = async (e)=>{
 
                     </div>
                     <div>
-                        <p className='text-red-500'>{errors.lname}</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{errors.lname}</p>
                         <input
                             type='text'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -84,7 +81,7 @@ const handleSubmit = async (e)=>{
                             />
                     </div>
                     <div>
-                        <p className='text-red-500'>{errors.email}</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{errors.email}</p>
                         <input
                             type='email'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -97,7 +94,7 @@ const handleSubmit = async (e)=>{
 
                     </div>
                     <div>
-                        <p className='text-red-500'>{errors.phone}</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{errors.phone}</p>
                         <input
                             type='tel'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -110,7 +107,7 @@ const handleSubmit = async (e)=>{
 
                     </div>
                     <div>
-                        <p className='text-red-500'>{ errors.password }</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{ errors.password }</p>
                         <input
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
@@ -120,7 +117,7 @@ const handleSubmit = async (e)=>{
                             onChange={ handleInputs }
                             value={ signForm.password }
                         /> 
-                        <p className='text-red-500'>{ errors.confirmPassword }</p>
+                        <p className='text-red-500 text-sm font-size: 0.75rem'>{ errors.confirmPassword }</p>
 
                           <input
                             type='password'
