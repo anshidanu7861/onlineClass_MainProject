@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom'
-import ColorRingLoader from '../components/lodingSpinners/colorRingLoader';
+import ColorRingLoader from '../components/lodingSpinners/ColorRingLoader'
 const UserSignup = lazy(()=> import("../pages/user/userSignup"))
 import UserLogin from '../pages/user/userLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google'

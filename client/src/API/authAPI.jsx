@@ -40,7 +40,6 @@ const authAPI = ()=>{
 
     const otpLoginApi = async (phoneNumber)=>{
         try{
-            console.log(phoneNumber, "hai phoen");
             const response = await axiosConfig.post('/otpLogin', phoneNumber)
             return response.data
         }catch(err) {

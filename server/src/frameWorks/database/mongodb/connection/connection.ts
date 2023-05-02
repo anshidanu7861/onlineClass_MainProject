@@ -6,10 +6,10 @@ const dbOpt: dbOptions = {
     useUnifiedTopology: true,
 }
 export default function database(){
-    mongoose.connect("mongodb://127.0.0.1:27017/Project", dbOpt).then(()=>{ 
+    mongoose.connect("mongodb+srv://rockwex:anshidmattara7861@cluster0.g3oinmq.mongodb.net/Project?retryWrites=true&w=majority", dbOpt).then(()=>{ 
         console.log('DB connection success');
     }).catch((err)=>{
-        console.log(err.message);
+        console.log(err);
     })
 } 
 
