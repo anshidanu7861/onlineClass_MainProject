@@ -4,6 +4,8 @@ import { userDBRepository } from '../../../database/mongodb/repositories/userRep
 import { userRepository } from '../../../../application/respositories/userRepository';
 import {  authService } from '../../../services/authServies';
 import { authServiceInterface } from '../../../../application/services/authServiesInterface';
+import { nodemailerService } from "../../../services/mailService";
+import { mailServiceRepository } from "../../../../application/services/authmailserviceInterface";
 
 const router = express.Router();
 const controller = userAuthController(
@@ -11,6 +13,8 @@ const controller = userAuthController(
     userRepository,
     authService,
     authServiceInterface,
+    nodemailerService,
+    mailServiceRepository
 )
 
 // USER REGISTER

@@ -3,8 +3,6 @@ import userModel from "../models/userModels";
 
 export  function userDBRepository() {
   const doSignup = async (userData: userInterface )=>{
-    console.log(userData, 'db kk varumo??');
-    
     const user = await userModel.create( userData )
     return user;
   }

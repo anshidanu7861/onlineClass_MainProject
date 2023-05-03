@@ -3,18 +3,21 @@ import { userInterface } from "../../types/authInterface";
 import { authServiceInterfaceType } from "../services/authServiesInterface";
 import AppError from "../../utils/appErrors";
 import { HttpStatus } from "../../types/httpStatus";
-import { mailServiceType } from '../../frameWorks/services/mailService'
+import { mailServiceRepoInterface } from "../services/authmailserviceInterface";
+// import { mailServiceRepository } from "../services/authmailserviceInterface";
 
 export const addUser = async(
     userData: userInterface,
     userDbRepository: ReturnType<authType>,
-    authServices: ReturnType<authServiceInterfaceType>
+    authServices: ReturnType<authServiceInterfaceType>,
+    mailServices: ReturnType<mailServiceRepoInterface>
     )=>{
         userData.email = userData.email?.toLowerCase()
         userData.password  = await authServices.encriptPassword(userData.password)
         userData.confirmPassword = await authServices.encriptPassword(userData.confirmPassword);
         const user = await userDbRepository.doSignup(userData)
-
+        
+        mailServices.mailMessages(userData.email as string)
         return {
             user,
         }

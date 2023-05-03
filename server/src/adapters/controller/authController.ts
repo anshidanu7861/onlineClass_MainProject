@@ -5,21 +5,28 @@ import { authType } from "../../frameWorks/database/mongodb/repositories/userRep
 import { addUser } from "../../application/use_cases/auth";
 import { AuthService } from "../../frameWorks/services/authServies";
 import { authServiceInterfaceType } from "../../application/services/authServiesInterface";
+import { mailServiceType } from "../../frameWorks/services/mailService";
+import { mailServiceRepoInterface } from "../../application/services/authmailserviceInterface";
 import asyncHandler from 'express-async-handler'
 import { isValidEmail, googleLogin, otpLogin } from "../../application/use_cases/auth";
 
-const userAuthController = ( 
+
+const userAuthController = (      
   userDBRepository: authType,
   userRepository: usertypeofRepository,
   authService: AuthService,
-  authServiceInterface: authServiceInterfaceType
+  authServiceInterface: authServiceInterfaceType,
+  mailServices: mailServiceType,
+  mailServiceIterface: mailServiceRepoInterface
+
   )=>{
   const userDBrepository = userRepository(userDBRepository()) 
   const authServices = authServiceInterface(authService())
-
+  const authMailServices = mailServiceIterface(mailServices())
+  
   const register = asyncHandler( async (req:Request, res: Response) =>{
     let userData: userInterface = req.body
-    const response = await addUser(userData, userDBrepository, authServices)
+    const response = await addUser(userData, userDBrepository, authServices, authMailServices)
     res.json(response)
   })
 

@@ -2,36 +2,33 @@ import nodemailer from 'nodemailer'
 import dotenvConfig from '../../configDotenv'
 
 let mailTransporter = nodemailer.createTransport({
-    host:dotenvConfig.Nodemailer_host,
+    host:"smtp.gmail.com",
+    service: "gmail",
     port: 587,
     secure:true,
     auth: {
-        user: dotenvConfig.Nodemailer_user,
-        pass: dotenvConfig.Nodemailer_pass,
+        user: "phoenixonlinekkv1@gmail.com",
+        pass: "sijadrwuenahffft",
     }
 });
 
 export const nodemailerService = async ()=>{
-    const inviteLink = async (email:[string]) =>{
-        console.log('emial varunnundo');
-        
+    const mailMessages = async (email:string) =>{
         try{
             const response = await mailTransporter.sendMail({
-                from:dotenvConfig.Nodemailer_user,
+                from:"phoenixonlinekkv1@gmail.com",
                 to:email,
-                subject: "Successfully registered",
-                text: "Hello World?",
-                html: "<b>Hello World?</b>",
+                subject: "Phonix Online",
+                text: "Successfully Registered Your Account",
             })
-            return "Email has been sent Successfully"
+            return "email set successfully"
         }catch(err){
-            console.log(err);
-            
+            console.log(err, "email error");
         }
     }
 
     return {
-        inviteLink
+        mailMessages
     }
 }
 
