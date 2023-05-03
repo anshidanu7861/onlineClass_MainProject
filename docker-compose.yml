@@ -18,4 +18,4 @@ services:
       - "5001:5001"
     volumes:
       - /app/node_modules
-      - ./client/build:/app/build
+      - ./client:/app
