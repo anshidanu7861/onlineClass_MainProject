@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import compression from 'compression'
 
 const corsOption = {
-    origin:"http://localhost:5173",
+    origin:"http://localhost:5001",
     methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
     credentials:true
 }
