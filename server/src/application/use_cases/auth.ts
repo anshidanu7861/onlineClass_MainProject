@@ -35,6 +35,8 @@ export const googleLogin = async(
     }else{
         const token = await authServices.generateAccessToken(user._id as string)
         const refreshToken = await authServices.generateRefreshToken(user._id as string)
+        console.log(refreshToken, "find token");
+        
         return {user, token, refreshToken }
     }
 }

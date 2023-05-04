@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import dotenvConfig from '../../configDotenv'
+// import dotenvConfig from '../../configDotenv'
 
 let mailTransporter = nodemailer.createTransport({
     host:"smtp.gmail.com",

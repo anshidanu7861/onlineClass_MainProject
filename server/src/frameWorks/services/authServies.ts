@@ -1,6 +1,4 @@
-import jwt from 'jsonwebtoken'
 import bcrypt, { genSalt } from 'bcrypt'
-import { userInterface } from '../../types/authInterface'
 
 
 export const authService = ()=> {

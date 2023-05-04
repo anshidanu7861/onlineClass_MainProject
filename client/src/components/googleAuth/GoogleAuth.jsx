@@ -25,7 +25,7 @@ function GoogleLoginButton ({text,handleUserInfo}) {
         <>
             <button
                 type="button" onClick={googleLoginHandler}
-                className="flex items-start  bg-gradient-to-t from-white to-white  justify-center  p-3 border border-black rounded-md focus:ring-2
+                className="flex items-start  justify-center  p-3 border border-black rounded-md focus:ring-2
                 focus:ring-offset-1 focus:ring-blue-400">
                 <img src='https://freesvg.org/img/1534129544.png' width={25} />
                 <p className='-mt-1 ml-2 font-sans font-semibold'>{ text }</p>

@@ -1,5 +1,4 @@
 import { AuthService } from "../../frameWorks/services/authServies";
-import { userInterface } from "../../types/authInterface";
 import jwt from 'jsonwebtoken'
 import dotenvConfig from "../../configDotenv";
 

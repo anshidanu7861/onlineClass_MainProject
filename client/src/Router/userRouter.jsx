@@ -4,7 +4,7 @@ import ColorRingLoader from '../components/lodingSpinners/ColorRingLoader'
 const UserSignup = lazy(()=> import("../pages/user/userSignup"))
 import UserLogin from '../pages/user/userLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import LandingPage from '../components/landingPage/landingPage';
+import LandingPage from '../components/landingPage/LandingPage';
 import StudentNavbar from '../components/navbar/StudentNavbar';
 import OtpLoginPage from '../components/firebase/OtpLoginPage';
 

@@ -58,21 +58,13 @@ function Login() {
 
     return(
         <>
-        <div className=' w-full px-5  flex h-screen items-center lg:px-60 '>
-            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-7/1 items-center  md:flex justify-center   py-10 px-9'>
-                <div className=''>
-                <img className='h-12' src="\public\images\lo1.png" alt="phoenix icon " />
-                </div>
-                <div className=' items-center'>
-                <img className='h-1/2 w-2/2'  src="https://coursegate.co.uk/wp-content/uploads/2021/09/Online-classroom-vector-illustration-768x512.jpg" alt="" />
-                </div>
-     
-            </div>
+        <div className='flex h-full justify-center p-32  items-center lg:px-6'>
 
-                 <div className='w-full md:w-1/2 m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border shadow-lg hover:shadow-blue-500/50   py-10 px-9'>
-                <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center animate-pulse text-blue-300 hover:text-red-300'>
+                 <div className='  m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border  hover:shadow-blue-500/50 shadow-xl  py-10 px-9'>
+                <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center animate-pulse text-myblue hover:text-sky-500'>
                     Sign Up
                 </h1>
+
 
                 <div className="flex items-start">
                 <div>
@@ -124,9 +116,8 @@ function Login() {
                     
                     <p className='text-blue-900 text-right text-sm'>don't have an account?<span onClick={()=>{navigate('/signup')}} className='text-green-500 underline ml-1 hover:text-red-500 hover:cursor-pointer text-sm'>Register</span></p>
                     <div className='flex justify-center items-center mt-6'>
-                        <input type="" />
                         <button
-                            className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark bg-gradient-to-r from-gray-500 to-black hover:from-black hover:to-gray-500 ...`}
+                            className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark bg-gradient-to-r from-sky-500 to-myblue hover:from-myblue hover:to-sky-500`}
                             type='submit'
                             >
                             Submit

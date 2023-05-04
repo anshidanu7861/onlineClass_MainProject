@@ -37,7 +37,7 @@ const handleSubmit = async (e)=>{
   return (
     <>
    
-        <div className=' w-full px-5  flex h-screen items-center lg:px-60'>
+        <div className=' w-full px-5  flex h-screen m items-center lg:px-60'>
             <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-4/5 items-center  md:flex justify-center  py-10 px-9'>
                 <div className=''>
                 <img className='' src="\public\images\lo1.png" alt="phoenix icon" />
@@ -50,7 +50,7 @@ const handleSubmit = async (e)=>{
      
             </div>
 
-            <div className='w-full md:w-1/2 m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border shadow-lg hover:shadow-blue-500/50   py-10 px-9'>
+            <div className='w-full md:w-1/2  m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border shadow-lg hover:shadow-blue-500/50   py-10 px-9'>
                 <h1 className='text-2xl font-medium text-primary mb-7 text-center animate-pulse text-blue-300 hover:text-red-300'>
                     Sign Up
                 </h1>
