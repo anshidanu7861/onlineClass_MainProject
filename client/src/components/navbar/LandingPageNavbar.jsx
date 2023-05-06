@@ -13,7 +13,7 @@ function LandingPageNavbar() {
       </div>
       <div className='flex justify-end gap-5  items-center mr-10 '> 
         {/* <Link to={'#'}><span className='text-blue-500'>About</span></Link> */}
-      <button type='submit' onClick={()=>{navigate('/login')}} className='font-medium border rounded-md border-x-cyan-500 border-t-blue-500 border-b-sky-400 shadow-lg hover:bg-gradient-to-r from-cyan-400 to-blue-900 h-10 w-36 text-blue-500 hover:text-white '>
+      <button type='submit' onClick={()=>{navigate('/signup')}} className='font-medium border rounded-md border-x-cyan-500 border-t-blue-500 border-b-sky-400 shadow-lg hover:bg-gradient-to-r from-cyan-400 to-blue-900 h-10 w-36 text-blue-500 hover:text-white '>
         Apply Now
       </button>
       </div>

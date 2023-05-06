@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BsFillShieldLockFill, BsTelephoneFill } from 'react-icons/bs'
-import OTPInput, { ResendOTP } from "otp-input-react";
+import OTPInput from "otp-input-react";
 import {CgSpinner} from 'react-icons/cg'
 import 'react-phone-input-2/lib/style.css'
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import authAPI from '../../API/authAPI';
 import { otpLoginError } from '../../config/toastifyConfig';
 import { ToastContainer } from 'react-toastify'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 function OtpLoginPage() {
@@ -38,12 +40,11 @@ function OtpLoginPage() {
     onCaptchVerify()
 
     const appVerifier = window.recaptchaVerifier
-    const formatPh = "+91" + ph
+    const formatPh = "+" + ph
     signInWithPhoneNumber(auth, formatPh, appVerifier)
     .then(async(confirmationResult) => {
       console.log(formatPh);
       const otpVerification = await otpLoginApi({phone:formatPh})
-      const { userId, email, accesstoken} = otpVerification
      ndow.confirmationResult = confirmationResult;
       setLoding(false)
       setShowOTP(true)
@@ -63,8 +64,8 @@ function OtpLoginPage() {
       console.log(res);
       setUser(res.user)
       setLoding(false)
-      navigate('/')
       alert('success')
+      navigate('/')
     }).className(err=>{
       console.log(err);
       setLoding(false)
@@ -109,12 +110,18 @@ function OtpLoginPage() {
           <label htmlFor="" className='font-bold text-xl text-black text-center'>
             Verify your phone number
           </label>
-          <input
+          {/* <input
           name='phone'
            type="string" 
            placeholder='phoneNumber'
             value={ph} 
-            onChange={(e)=>setPh(e.target.value)} />
+            onChange={(e)=>setPh(e.target.value)} /> */}
+
+            <PhoneInput 
+            country={'in'}
+            value={ph}
+            onChange={setPh}
+            />
 
              <button onClick={onSignup} className='bg-blue-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded'>
               { loading && <CgSpinner

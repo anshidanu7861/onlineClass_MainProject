@@ -5,8 +5,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Home', href: '#', current: true },
   { name: 'Schedule', href: '#', current: false },
-  { name: 'Report', href: '#', current: false },
-  { name: 'Mentors', href: '#', current: false },
+  { name: 'Attendance', href: '#', current: false },
+  { name: 'Students', href: '#', current: false },
   { name: 'Messages', href: '#', current: false },
 ]
 
@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function StudentNavbar() {
+export default function MentorNavbar() {
   return (
     <Disclosure as="nav" className="bg-gradient-to-l from-black  to-gray-800">
       {({ open }) => (

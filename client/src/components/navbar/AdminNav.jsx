@@ -5,18 +5,18 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Home', href: '#', current: true },
   { name: 'Schedule', href: '#', current: false },
-  { name: 'Report', href: '#', current: false },
+  { name: 'Course', href: '#', current: false },
+  { name: 'Students', href: '#', current: false },
   { name: 'Mentors', href: '#', current: false },
-  { name: 'Messages', href: '#', current: false },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function StudentNavbar() {
+export default function AdminNav() {
   return (
-    <Disclosure as="nav" className="bg-gradient-to-l from-black  to-gray-800">
+    <Disclosure as="nav" className="bg-gradient-to-l from-myblue  to-sky-600">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export default function StudentNavbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? ' bg-sky-700 text-white' : 'text-gray-300 hover:bg-sky-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}

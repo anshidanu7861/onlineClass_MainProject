@@ -33,6 +33,7 @@ function Login() {
         try{
             const emailVerifyResponse = await verifyEmail(loginForm)
             const { userId, fname, email, accessToken } = emailVerifyResponse
+            console.log(email, 'accesstocken');
             dispatch(setDetails({ userId, fname, email, accessToken }))
             navigate('/')
         }catch(error) {
@@ -62,10 +63,8 @@ function Login() {
 
                  <div className='  m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border  hover:shadow-blue-500/50 shadow-xl  py-10 px-9'>
                 <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center animate-pulse text-myblue hover:text-sky-500'>
-                    Sign Up
+                    Sign In
                 </h1>
-
-
                 <div className="flex items-start">
                 <div>
 
@@ -73,7 +72,7 @@ function Login() {
                 onClick={otpLoginPage}
                 type="button" 
                 className="  flex items-start  bg-gradient-to-t from-white to-white   justify-center  p-3 border border-black rounded-md focus:ring-2
-                focus:ring-offset-1 focus:ring-violet-600">
+                focus:ring-offset-1 focus:ring-myblue">
                     <img className="" width={25} src="https://w7.pngwing.com/pngs/254/868/png-transparent-verified-ic-google-material-design-3-icon.png" alt="" />
                 <p className='mt-1 ml-2 font-sans font-semibold'>OTP LOGIN</p>
                  </button>

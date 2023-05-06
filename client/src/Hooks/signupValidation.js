@@ -10,6 +10,8 @@ const userSignupValidation = ()=> {
         password:"",
         confirmPassword: "",
         field:"",
+        subject:"",
+        course:"",
         isActive: false
     }) 
 
@@ -20,7 +22,9 @@ const userSignupValidation = ()=> {
         phone:'',
         password:'',
         confirmPassword: "",
-        field:'',
+        field:"",
+        subject:'',
+        course:'',
         isActive: false
     })
 
@@ -41,7 +45,7 @@ const userSignupValidation = ()=> {
     }
 
     const isValidMobile = (string) =>{
-        return /^\+[1-9]{1}[0-9]{3,14}$/.test(string)
+        return /^[6-9]\d{9}$/.test(string)
     }
 
     const passwordLength = (string)=> {
@@ -87,6 +91,7 @@ const userSignupValidation = ()=> {
     const isValidForm = async(e)=>{
         e.preventDefault()
         let status = true
+        console.log(signForm, "vannoo??");
         if(signForm['email'].length == 0 || errors['email']!=undefined) status = false
         if(signForm.password != signForm.confirmPassword) status = false
         return status; 

@@ -58,7 +58,8 @@ const userAuthController = (
 
    const otpVerification = asyncHandler(async(req:Request, res:Response)=>{
     let { phone } : { phone:string } = req.body
-    const response = await otpLogin(phone, userDBrepository, authServices)
+    let phoneNumber = phone.slice(-10)
+    const response = await otpLogin(phoneNumber, userDBrepository, authServices)
     res.json(response)
    })
 

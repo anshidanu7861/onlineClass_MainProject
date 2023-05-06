@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // API
 import authAPI from '../../API/authAPI'
@@ -17,6 +17,7 @@ const { dosignup } = authAPI()
 const { successfulleyRgistration } = SweetAlert()
 
 const handleSubmit = async (e)=>{
+    console.log(e, "hi");
     let formStatus = await isValidForm(e)
     if(!formStatus) {
         invalidRegistration()
@@ -34,26 +35,54 @@ const handleSubmit = async (e)=>{
     }
 }
 
+const [userType, setUserType] = useState('');
+// const [selectedOption, setSelectedOption] = useState('');
+
+const handleUserTypeChange = (e) => {
+    console.log(e.target.value);
+  setUserType(e.target.value);
+  if(userType === "mentor"){
+    signForm.field = 'mentor'
+  }else {
+    signForm.field = 'student'
+  }
+ 
+};
+
+const handleOptionChange = (e) => {
+    console.log(e.target.value);
+    if(userType == "student"){
+        signForm.course = e.target.value
+    }else{
+        signForm.subject = e.target.value
+    }
+  setUserType('')
+};
+
+const courseOptions = [
+  { value: 'Pluse one', label: 'Pluse one' },
+  { value: 'Pluse two', label: 'Pluse tow' },
+];
+
+const subjectOptions = [
+  { value: 'maths', label: 'Math' },
+  { value: 'malaylaam', label: 'English' },
+  { value: 'history', label: 'History' },
+];
+
   return (
     <>
    
-        <div className=' w-full px-5  flex h-screen m items-center lg:px-60'>
-            <div className='md:flex-col hidden w-1/2  rounded-lg border shadow-lg hover:shadow-pink-300 lg:h-4/5 items-center  md:flex justify-center  py-10 px-9'>
-                <div className=''>
-                <img className='' src="\public\images\lo1.png" alt="phoenix icon" />
-                </div>
+        <div className=' flex h-full justify-center p-20  items-center lg:px-6'>
 
-                <div className=' items-center'>
-                <img className='h-1/2 w-2/2'  src="\public\images\BSC-Computer-Science-vs-BCA.jpg" alt="" />
-
-                </div>
-     
-            </div>
-
-            <div className='w-full md:w-1/2  m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border shadow-lg hover:shadow-blue-500/50   py-10 px-9'>
-                <h1 className='text-2xl font-medium text-primary mb-7 text-center animate-pulse text-blue-300 hover:text-red-300'>
+            <div className=' w-1/2 m-autobg-[conic-gradient(var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 rounded-lg border  hover:shadow-blue-500/50 shadow-xl  py-10 px-9'>
+                {/* <h1 className='text-2xl font-medium text-primary mb-7 text-center animate-pulse text-myblue hover:text-sky-600'>
                     Sign Up
-                </h1>
+                </h1> */}
+                <div className='flex justify-center items-center'>
+
+                <img className='w-40 ' src="\public\images\lo1.png" alt="" />
+                </div>
                 <form onSubmit={ handleSubmit }>
                     <div>
                         <p className='text-red-500 text-sm font-size: 0.75rem'>{errors.fname}</p>
@@ -128,22 +157,70 @@ const handleSubmit = async (e)=>{
                             onChange={ handleInputs }
                             value={ signForm.confirmPassword }
                         /> 
-                    <div className='flex'>
+
                         <div>
-                        <input id='student' type="radio"  name='field' onChange={ handleInputs } value={ 'student' }/>
-                        <label htmlFor="student" className='text-gray-400 pe-5'  >Student</label> 
-                        </div>
-                        <div>
-                        <input id='mentor' type="radio"  name='field' className='' onChange={ handleInputs } value={ 'mentor' } required/>
-                        <label htmlFor="mentor" className='text-gray-400'  >Mentor</label>
-                        </div>
-                    </div>
+                            <div className='flex gap-3'>
+                                <label>
+                                <input
+                                name='field'
+                                type="radio"
+                                value="mentor"
+                                checked={userType === 'mentor'}
+                                onChange={handleUserTypeChange}
+                                />
+                                Mentor
+                                </label>
+
+                                <label>
+                                <input
+                                name='field'
+                                type="radio"
+                                value="student"
+                                checked={userType === 'student'}
+                                onChange={handleUserTypeChange}
+                                />
+                                Student
+                                </label>
+                            </div>
+                            <div>
+                                {
+                                    userType == "student" && 
+                                    <div>
+                                        <select name="" onChange={handleOptionChange} id="">
+                                            <option value="">Select course</option>
+                                            {
+                                                courseOptions.map((course)=>{
+                                                    return(
+                                                        <option value={course.value}>{course.label}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                                {
+                                    userType == "mentor" && 
+                                    <div>
+                                        <select name="" onChange={handleOptionChange} id="">
+                                            <option value="">Select Your Subject</option>
+                                            {
+                                                subjectOptions.map((subject)=>{
+                                                    return(
+                                                        <option value={subject.value}>{subject.label}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+                            </div>        
                     </div>
                     
                     <p className='text-blue-900 text-right text-sm'>Already have an account?<span onClick={()=>{navigate('/login')}} className='text-green-500 underline ml-1 hover:text-red-500 hover:cursor-pointer text-sm'>Login</span></p>
                     <div className='flex justify-center items-center mt-6'>
                         <button
-                            className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark bg-gradient-to-r from-gray-500 to-black hover:from-black hover:to-gray-500 ...`}
+                            className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark bg-gradient-to-r from-sky-500 to-myblue hover:from-myblue hover:to-sky-500 ...`}
                             type='submit'
                             >
                             Submit
