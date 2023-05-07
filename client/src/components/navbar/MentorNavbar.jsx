@@ -1,12 +1,15 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { reSetDetails, userReducer } from '../../Redux/userSlice/userSlice'
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
   { name: 'Schedule', href: '#', current: false },
   { name: 'Attendance', href: '#', current: false },
-  { name: 'Students', href: '#', current: false },
+  { name: 'Students', href: '/studentlist', current: false },
   { name: 'Messages', href: '#', current: false },
 ]
 
@@ -15,6 +18,17 @@ function classNames(...classes) {
 }
 
 export default function MentorNavbar() {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const user = useSelector(userReducer)
+
+  const logoutHandler = () =>{
+    localStorage.clear()
+    dispatch(reSetDetails())
+    navigate('/login')
+  }
+
   return (
     <Disclosure as="nav" className="bg-gradient-to-l from-black  to-gray-800">
       {({ open }) => (
@@ -75,13 +89,10 @@ export default function MentorNavbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex  bg-black text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                     
+                      <p className='text-white h-8 w-8'>{user.fname}</p>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -117,7 +128,7 @@ export default function MentorNavbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                           onClick={logoutHandler}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out

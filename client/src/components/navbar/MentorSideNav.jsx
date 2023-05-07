@@ -13,7 +13,7 @@ function MentorSideNav() {
     { name: "Settings", link: "/Settings", icon: RiSettings4Line},
     { name: "Schedule", link: "/Schedule", icon: AiFillCalendar, margin: true },
     { name: "Attandance", link: "/Attandance", icon: AiOutlineBarChart },
-    { name: "students", link: "/students", icon: AiOutlineUsergroupAdd , margin: true},
+    { name: "students", link: "/studentlist", icon: AiOutlineUsergroupAdd , margin: true},
     { name: "Messages", link: "/Messages", icon: FiMessageSquare , },
   ];
   const [open, setOpen] = useState(true);

@@ -9,6 +9,8 @@ const OtpLoginPage = lazy(()=>import( '../components/firebase/OtpLoginPage'))
 const StudentDashPage = lazy(()=> import ( '../pages/user/StudentDashPage'))
 const MentorDashPage = lazy(()=>import('../pages/user/MentorDashPage'))
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import MentorsListStdPage from '../pages/user/MentorsList';
+import StudentListPage from '../pages/user/StudentListPage';
 
 // USER ROUTERS
 function UserRouter() {
@@ -60,10 +62,28 @@ function UserRouter() {
             }>
             </Route>
 
-            <Route exact path='/mentorDashboard' element={
+            <Route exact path='/mentorsDashboard' element={
               <Suspense fallback={<ColorRingLoader />}>
                 <ErrorBoundary>
                 <MentorDashPage />
+                </ErrorBoundary>
+              </Suspense>
+            }>
+            </Route>
+
+            <Route exact path='/mentorlist' element={
+              <Suspense fallback={<ColorRingLoader />}>
+                <ErrorBoundary>
+                <MentorsListStdPage />
+                </ErrorBoundary>
+              </Suspense>
+            }>
+            </Route>
+
+            <Route exact path='/studentlist' element={
+              <Suspense fallback={<ColorRingLoader />}>
+                <ErrorBoundary>
+                <StudentListPage />
                 </ErrorBoundary>
               </Suspense>
             }>

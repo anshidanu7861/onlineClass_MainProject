@@ -96,7 +96,7 @@ const userSignupValidation = ()=> {
         if(signForm.password != signForm.confirmPassword) status = false
         return status; 
     }
-    return {errors, signForm, handleInputs, isValidForm }
+    return {errors, signForm, setSignForm, handleInputs, isValidForm }
 }
 
 export default userSignupValidation;

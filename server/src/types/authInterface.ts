@@ -7,5 +7,7 @@ export interface userInterface {
     password: string,
     confirmPassword: string,
     field: string,
+    subject: string,
+    course: string,
     isActive: boolean
 }

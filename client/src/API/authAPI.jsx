@@ -1,9 +1,14 @@
 import React from 'react'
 import axiosConfig from '../config/axiosConfig'
+// import useAxiosPrivate from '../Hooks/axiosPrivate'
 
-const authAPI = ()=>{
+const authAPI = ()=>{ 
+
+    // const { axiosPrivate } = useAxiosPrivate()
+
     const dosignup = async (signupData) =>{
         try{
+            console.log(signupData, 'sing');
            const response = await axiosConfig.post('/signup', signupData)
            return response.data
         }catch(err){
@@ -47,7 +52,34 @@ const authAPI = ()=>{
         }
     }
 
-    return { dosignup, verifyEmail, CreateAccessToken, googleLoginApi, otpLoginApi }
+    const getStudentsData = async (field) =>{
+        try{
+            const respose = await axiosConfig.get( `/getStudentsData/${field}` )
+            console.log(respose.data);
+            return respose.data
+        }catch(err) {
+            console.log(err.message)
+        }
+    }
+
+    const getMentorsDetails = async (field) =>{
+        try{
+            const response = await axiosConfig.get(`/getMentorsData/${field}`)
+            console.log(response);
+            return response.data
+        }catch(err) {
+            console.log(err.message);
+        }
+    }
+
+    return { dosignup,
+             verifyEmail,
+             CreateAccessToken, 
+             googleLoginApi, 
+             otpLoginApi, 
+             getStudentsData,
+             getMentorsDetails
+            }
 }
 
 export default authAPI;

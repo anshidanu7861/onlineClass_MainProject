@@ -13,7 +13,7 @@ function StudentSideNav() {
     { name: "Settings", link: "/Settings", icon: RiSettings4Line},
     { name: "Schedule", link: "/Schedule", icon: AiFillCalendar, margin: true },
     { name: "Report", link: "/Report", icon: AiOutlineBarChart },
-    { name: "Menters", link: "/", icon: AiOutlineUsergroupAdd , margin: true},
+    { name: "Menters", link: "/mentorlist", icon: AiOutlineUsergroupAdd , margin: true},
     { name: "Messages", link: "/Messages", icon: FiMessageSquare , },
   ];
   const [open, setOpen] = useState(true);
@@ -21,7 +21,7 @@ function StudentSideNav() {
     <section className=" sm:flex gap-6 hidden  ">
       <div
         className={` ${open ? "w-60 " : "w-20 "
-          } bg-gradient-to-b from-black  to-gray-500 min-h-screen p-5   relative duration-500`}
+          } bg-gradient-to-b from-gray-900  to-myblue min-h-screen p-5   relative duration-500`}
       >
         <AiFillLeftCircle
           className={`absolute text-white bg-gray-700 rounded-full cursor-pointer -right-4 top-20 w-10 h-10  

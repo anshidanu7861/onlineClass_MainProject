@@ -32,10 +32,14 @@ function Login() {
 
         try{
             const emailVerifyResponse = await verifyEmail(loginForm)
-            const { userId, fname, email, accessToken } = emailVerifyResponse
-            console.log(email, 'accesstocken');
-            dispatch(setDetails({ userId, fname, email, accessToken }))
-            navigate('/')
+            const accessToken = emailVerifyResponse.token
+            const { _id, fname,email, field, } = emailVerifyResponse.user
+            dispatch(setDetails({ _id, fname, email,field, accessToken }))
+            if(field === 'mentor') {
+                navigate('/mentorsDashboard')
+            }else{
+                navigate('/studentDashboard')
+            }
         }catch(error) {
             invalidLogin()
             console.log(error.msg);
@@ -46,9 +50,14 @@ function Login() {
     const googleLogindata = async(userInfo)=>{
         try{
             const googleResponse = await googleLoginApi({email:userInfo.email})
-            const {userId, fname, email, accessToken } = googleResponse
-            dispatch(setDetails({userId, fname, email, accessToken }))
-            navigate('/')
+            const accessToken = googleResponse.token
+            const {_id, fname, email, field } = googleResponse.user
+            dispatch(setDetails({_id, fname, email,field, accessToken }))
+            if(field === 'mentor'){
+                navigate('/mentorsDashboard')
+            }else{
+                navigate("/studentDashboard")
+            }
         }catch(err){
             googleLoginError()
             console.log(err);

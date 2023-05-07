@@ -3,10 +3,10 @@ import { Bar } from 'react-chartjs-2';
 
 const BarChart = () => {
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    labels: ['English', 'Hindi', 'Maths', 'Chemistry', 'Biology', 'History'],
     datasets: [
       {
-        label: 'Sales',
+        label: 'Mark',
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',

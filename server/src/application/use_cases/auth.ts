@@ -4,7 +4,6 @@ import { authServiceInterfaceType } from "../services/authServiesInterface";
 import AppError from "../../utils/appErrors";
 import { HttpStatus } from "../../types/httpStatus";
 import { mailServiceRepoInterface } from "../services/authmailserviceInterface";
-// import { mailServiceRepository } from "../services/authmailserviceInterface";
 
 export const addUser = async(
     userData: userInterface,
@@ -78,4 +77,19 @@ export const isValidEmail = async(
     }
 }
 
+export const getStudentDetails = async(
+    field : string,
+    userDBRepository: ReturnType<authType>,
+) =>{
+    const students = await userDBRepository.getStudentDetails(field)    
+    return { students }
+}
+
+export const getMentorsDetails = async(
+    field: string,
+    userDBRepository: ReturnType<authType>,
+)=>{
+    const mentors = await userDBRepository.getMentorsDetails(field)
+    return { mentors }
+}
 

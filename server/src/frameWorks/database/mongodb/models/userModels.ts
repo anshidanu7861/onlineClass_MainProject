@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         requred: true
     },
+    subject: {
+        type: String,
+    },
+    course: {
+        type: String,
+    },
     isActive: {
         type: Boolean,
     }

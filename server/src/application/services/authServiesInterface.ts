@@ -31,10 +31,16 @@ export const authServiceInterface = (service: ReturnType<AuthService>)=> {
         return token;
     }
 
+    // VERIFY REFRESH TOKEN
+    const verifyAccessToken = async (token: string)=>{
+        const verifyAccessToken = jwt.verify(token, dotenvConfig.access_token_key)
+        return verifyAccessToken
+    }
+
     // CREATE REFRESH TOKEN
     const generateRefreshToken = async (payload: string) => {
-        const token =  jwt.sign({payload}, dotenvConfig.refresh_token_key, {expiresIn: '1w'})
-        return token;
+        const Refreshtoken =  jwt.sign({payload}, dotenvConfig.refresh_token_key, {expiresIn: '1w'})
+        return Refreshtoken;
     }
 
     // VERIFY REFRESH TOKEN
@@ -49,6 +55,7 @@ export const authServiceInterface = (service: ReturnType<AuthService>)=> {
         encriptConfirmPassword,
         compareConfirmPassword,
         generateAccessToken,
+        verifyAccessToken,
         generateRefreshToken,
         verifyRefreshToken,
     }

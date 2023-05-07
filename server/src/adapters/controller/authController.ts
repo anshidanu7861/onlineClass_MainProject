@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { userInterface } from "../../types/authInterface";
 import { usertypeofRepository } from "../../application/respositories/userRepository";
 import { authType } from "../../frameWorks/database/mongodb/repositories/userReposioryMongo";
-import { addUser } from "../../application/use_cases/auth";
+import { addUser, getStudentDetails } from "../../application/use_cases/auth";
 import { AuthService } from "../../frameWorks/services/authServies";
 import { authServiceInterfaceType } from "../../application/services/authServiesInterface";
 import { mailServiceType } from "../../frameWorks/services/mailService";
@@ -25,6 +25,8 @@ const userAuthController = (
   const authMailServices = mailServiceIterface(mailServices())
   
   const register = asyncHandler( async (req:Request, res: Response) =>{
+    console.log(req.body);
+    
     let userData: userInterface = req.body
     const response = await addUser(userData, userDBrepository, authServices, authMailServices)
     res.json(response)
@@ -63,12 +65,30 @@ const userAuthController = (
     res.json(response)
    })
 
+   const getStudentsData = asyncHandler(async(req:Request, res:Response)=>{
+    let field = req.params.field    
+    console.log(field);
+        
+    const response = await getStudentDetails(field, userDBrepository)
+    res.json(response)
+   })
+
+   const getMentorsData = asyncHandler(async(req:Request, res:Response)=>{
+    let field = req.params.field
+    console.log(field);
+    
+    const response = await getStudentDetails(field, userDBrepository)
+    res.json(response)
+   })
+
   return {
     register,
     emailVerification,
     jwtAuth,
     googleVerification,
-    otpVerification
+    otpVerification,
+    getStudentsData,
+    getMentorsData
   }
 }
 

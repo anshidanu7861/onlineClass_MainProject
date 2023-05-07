@@ -22,7 +22,19 @@ export  function userDBRepository() {
     return user
   }
 
-  return  { doSignup,findEmail, googleLogin, otpLogin };
+  const getStudentDetails = async (field: string) =>{
+    console.log(field);
+    
+    const students  = await userModel.find({"field" : field})
+    return students
+  }
+
+  const getMentorsDetails = async (field: string) =>{
+    const mentors = await userModel.find({'field' : field})
+    return mentors
+  }
+
+  return  { doSignup,findEmail, googleLogin, otpLogin, getStudentDetails, getMentorsDetails };
 }
 
 export type authType = typeof userDBRepository;
