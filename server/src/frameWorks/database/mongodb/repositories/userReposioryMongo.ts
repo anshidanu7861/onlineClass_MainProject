@@ -23,14 +23,18 @@ export  function userDBRepository() {
   }
 
   const getStudentDetails = async (field: string) =>{
+    console.log(field);
+    
     const student = await userModel.find({'field': field})
-    return {student}
+    return student
   }
 
   
   const getMentorsDetails = async (field: string) =>{
+    console.log(field);
+    
     const mentor = await userModel.find({'field': field})
-    return {mentor}
+    return mentor
   }
 
   return  { doSignup,findEmail, googleLogin, otpLogin, getStudentDetails, getMentorsDetails };

@@ -51,6 +51,7 @@ const authAPI = ()=>{
 
     const getStudentsData = async (field) =>{
         try{
+            console.log('stidmsd;fhriltguhseoirughepir');
             const respose = await axiosConfig.get( `/getStudentsData/${field}` )
             console.log(respose.data);
             return respose.data
@@ -61,6 +62,7 @@ const authAPI = ()=>{
 
     const getMentorsDetails = async (field) =>{
         try{
+            console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrr', field);
             const response = await axiosConfig.get(`/getMentorsData/${field}`)
             console.log(response);
             return response.data

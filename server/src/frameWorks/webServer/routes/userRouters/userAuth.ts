@@ -27,5 +27,9 @@ router.get('/token', controller.jwtAuth)
 router.post('/googleLogin', controller.googleVerification)
 // OTP AUTH
 router.post('/otpLogin', controller.otpVerification)
+// GET STUDENT DATA
+router.get('/getStudentsData/:field', controller.getStudentsData)
+
+router.get('/getMentorsData/:field', controller.getMentorsData)
 
 export default router;
