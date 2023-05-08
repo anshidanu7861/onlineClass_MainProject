@@ -18,7 +18,6 @@ function Signup() {
   const { successfulleyRgistration } = SweetAlert();
 
   const handleSubmit = async (e) => {
-    console.log(e.target.value);
     let formStatus = await isValidForm(e);
     if (!formStatus) {
       invalidRegistration();

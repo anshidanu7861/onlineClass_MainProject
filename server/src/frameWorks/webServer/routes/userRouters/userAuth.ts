@@ -14,8 +14,7 @@ const controller = userAuthController(
     authService,
     authServiceInterface,
     nodemailerService,
-    mailServiceRepository,
-  
+    mailServiceRepository
 )
 
 // USER REGISTER
@@ -28,9 +27,5 @@ router.get('/token', controller.jwtAuth)
 router.post('/googleLogin', controller.googleVerification)
 // OTP AUTH
 router.post('/otpLogin', controller.otpVerification)
-// GET STUDENTS DETAILS
-router.get('/getStudentsData/:field',controller.getStudentsData )
-// GET MENTORS DETAILS
-router.get('/getMentorsData/:field', controller.getMentorsData)
 
 export default router;

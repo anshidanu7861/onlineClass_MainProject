@@ -25,8 +25,6 @@ const userAuthController = (
   const authMailServices = mailServiceIterface(mailServices())
   
   const register = asyncHandler( async (req:Request, res: Response) =>{
-    console.log(req.body);
-    
     let userData: userInterface = req.body
     const response = await addUser(userData, userDBrepository, authServices, authMailServices)
     res.json(response)

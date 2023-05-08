@@ -7,6 +7,8 @@ const dotenvConfig = {
     Nodemailer_host: process.env.Nodemailer_host as string,
     Nodemailer_user: process.env.Nodemailer_user as string,
     Nodemailer_pass: process.env.Nodemailer_pass as string,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL as string,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD as string
 }
 
 export default dotenvConfig;

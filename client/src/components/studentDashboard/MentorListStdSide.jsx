@@ -15,7 +15,6 @@ export default function MentorListStdSide() {
             if(field == "student") {
                 let field = 'mentor'
                 const response = await getMentorsDetails(field)
-                console.log(response);
                 setMentors(response?.students)
             }
         }catch(err) {

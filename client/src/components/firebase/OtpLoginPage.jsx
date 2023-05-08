@@ -34,7 +34,6 @@ function OtpLoginPage() {
       }, auth)
     }
   }
-  console.log(ph);
   function onSignup() {
     setLoding(true)
     onCaptchVerify()
@@ -43,9 +42,8 @@ function OtpLoginPage() {
     const formatPh = "+" + ph
     signInWithPhoneNumber(auth, formatPh, appVerifier)
     .then(async(confirmationResult) => {
-      console.log(formatPh);
       const otpVerification = await otpLoginApi({phone:formatPh})
-     ndow.confirmationResult = confirmationResult;
+     window.confirmationResult = confirmationResult;
       setLoding(false)
       setShowOTP(true)
       alert('success')
@@ -61,11 +59,13 @@ function OtpLoginPage() {
     console.log('onotpverify');
     setLoding(true)
     window.confirmationResult.confirm(otp).then(async(res)=>{
-      console.log(res);
       setUser(res.user)
       setLoding(false)
-      alert('success')
-      navigate('/')
+      if(res.field == "mentor") {
+        navigate('/mentorDashbord')
+      }else if(res.field == 'student'){
+        navigate('/studentDashboard')
+      }
     }).className(err=>{
       console.log(err);
       setLoding(false)

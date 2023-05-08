@@ -4,11 +4,8 @@ import axiosConfig from '../config/axiosConfig'
 
 const authAPI = ()=>{ 
 
-    // const { axiosPrivate } = useAxiosPrivate()
-
-    const dosignup = async (signupData) =>{
+    const dosignup = async ( signupData ) =>{
         try{
-            console.log(signupData, 'sing');
            const response = await axiosConfig.post('/signup', signupData)
            return response.data
         }catch(err){

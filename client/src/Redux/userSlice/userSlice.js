@@ -8,8 +8,6 @@ const initialState = {
     accessToken: ""
 };
 
-
-
 export const userSlice = createSlice({
     name: 'userDetails',
     initialState,

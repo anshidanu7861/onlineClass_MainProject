@@ -49,7 +49,7 @@ const userSignupValidation = ()=> {
     }
 
     const passwordLength = (string)=> {
-        return string.length >=6
+        return string.length >= 6
     }
 
     const handleInputs = (e)=> {
@@ -91,8 +91,7 @@ const userSignupValidation = ()=> {
     const isValidForm = async(e)=>{
         e.preventDefault()
         let status = true
-        console.log(signForm, "vannoo??");
-        if(signForm['email'].length == 0 || errors['email']!=undefined) status = false
+        if(signForm['email'].length == 0 || errors['email'] != undefined) status = false
         if(signForm.password != signForm.confirmPassword) status = false
         return status; 
     }
