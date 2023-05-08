@@ -1,4 +1,6 @@
 import bcrypt, { genSalt } from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import dotenvConfig from '../../configDotenv'
 
 
 export const authService = ()=> {
@@ -13,9 +15,15 @@ export const authService = ()=> {
         return status;
     }
 
+    const verifyAccessToken = async (token: string) =>{
+        const response = await jwt.verify(token, dotenvConfig.refresh_token_key)
+        return response
+    }
+
     return {
         encrypt,
         ComparePassword,
+        verifyAccessToken
     }
 }
 
