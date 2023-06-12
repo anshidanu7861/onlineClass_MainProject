@@ -68,9 +68,7 @@ const userAuthController = (
     const response = await getStudentDetails(field, userDBrepository)
     res.json(response)
    })
-
-
-
+   
    const getMentorsData = asyncHandler(async(req:Request, res:Response)=>{
     let field = req.params.field
     const response = await getStudentDetails(field, userDBrepository)

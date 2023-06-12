@@ -29,7 +29,7 @@ router.post('/googleLogin', controller.googleVerification)
 router.post('/otpLogin', controller.otpVerification)
 // GET STUDENT DATA
 router.get('/getStudentsData/:field', controller.getStudentsData)
-
+// GET MENTERS DATA
 router.get('/getMentorsData/:field', controller.getMentorsData)
 
 export default router;

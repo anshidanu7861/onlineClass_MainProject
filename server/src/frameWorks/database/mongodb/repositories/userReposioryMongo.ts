@@ -23,16 +23,11 @@ export  function userDBRepository() {
   }
 
   const getStudentDetails = async (field: string) =>{
-    console.log(field);
-    
     const student = await userModel.find({'field': field})
     return student
   }
-
-  
+   
   const getMentorsDetails = async (field: string) =>{
-    console.log(field);
-    
     const mentor = await userModel.find({'field': field})
     return mentor
   }
